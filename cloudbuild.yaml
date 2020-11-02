@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/docker-goof', '.' ]
+- name: 'snyk/snyk-cli:docker'
+  args: [ 'test', '--docker', 'gcr.io/$PROJECT_ID/docker-goof', '--file=Dockerfile' ]
+images:
+- 'gcr.io/$PROJECT_ID/docker-goof'
